@@ -1,0 +1,29 @@
+# Pipeline process:
+
+- commit code to Github.
+- Run the build 'job'
+  - The pipeline is triggered after the commit.
+  - Install node and npm.
+  - Install yarn.
+  - Install client app.
+  - Install server app.
+  - Build Client app.
+  - Build Server app.
+- Run test 'job'
+  - The pipeline is triggered after the commit.
+  - Install node and npm.
+  - Install yarn.
+  - Install client app.
+  - Install server app.
+  - Test Client app.
+  - Test Server app.
+- Run deploy 'job'
+  - The pipeline is triggered after the commit.
+  - Install node and npm.
+  - Install yarn.
+  - Install aws-cli.
+  - Install eb.
+  - Install client app.
+  - Install server app.
+  - Deploy Client app.
+  - Deploy Server app.
