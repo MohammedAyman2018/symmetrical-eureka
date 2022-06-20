@@ -7,6 +7,10 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.3
   eb: circleci/aws-elastic-beanstalk@1.0.0
 
+branches:
+  only:
+    - main
+
 commands:
   install_client:
     description: "command for Client Installation"
@@ -19,7 +23,7 @@ commands:
             - v1-dependencies-{{ checksum "package.json" }}
             # Find the most recently generated cache used from any branch
             - v1-dependencies-
-      - run: 
+      - run:
           name: Install Client Dependencies
           command: yarn client:install
       - save_cache:
@@ -28,12 +32,12 @@ commands:
           key: v1-dependencies-{{ checksum "package.json" }}
   install_server:
     description: "command for Server Installation"
-    steps:          
+    steps:
       - restore_cache:
           keys:
             - v2-dependencies-{{ checksum "package.json" }}
             - v2-dependencies-
-      - run: 
+      - run:
           name: Install Server Dependencies
           command: yarn server:install
       - save_cache:
@@ -66,11 +70,11 @@ jobs:
       - checkout
       - install_client
       - install_server
-      - run: 
-          name: Test Client 
+      - run:
+          name: Test Client
           command: yarn client:test
-      - run: 
-          name: Test Server 
+      - run:
+          name: Test Server
           command: yarn server:test
   deploy:
     docker:
@@ -100,4 +104,3 @@ workflows:
       - deploy:
           requires:
             - test
-
